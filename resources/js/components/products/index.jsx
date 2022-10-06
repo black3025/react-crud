@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, {useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const index = () => {
@@ -6,6 +7,18 @@ const index = () => {
   const newProduct =()=>{
     navigate("product/new")
   }
+
+  useEffect(()=>{
+    getProducts()
+  })
+
+  const getProducts = async()=>{
+    await axios.get("/api/get_all_product")
+      .then(({data})=>{
+        console.log('data',data)
+      })
+  }
+
   return (
     <div className='container'>
         <div className="products_list">

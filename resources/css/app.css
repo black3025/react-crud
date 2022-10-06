@@ -95,9 +95,7 @@ body{
     grid-template-columns: 1fr minmax(auto, 290px);
     grid-gap: 20px;
     color:#6a727a;
-    margin-top: 20px;
-  
-    
+    margin-top: 20px;   
 }
 
 .card{
@@ -174,11 +172,11 @@ body{
     cursor: pointer;
 }
 
-.hr{
+hr{
     margin-top: 30px;
     margin-bottom: 30px;
 }
 
 .br{
-    margin-top: 40px;
+    margin-top:60px;
 }
