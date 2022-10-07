@@ -35,14 +35,12 @@ const newProduct = () => {
     const createProduct = async(e)=>{
         e.preventDefault()
         const formData = new FormData()
-
         formData.append('name', name)
         formData.append('description', description)
         formData.append('photo', photo)
         formData.append('type', type)
         formData.append('quantity', quantity)
         formData.append('price', price)
-
         await axios({
             method:'post',
             url: "/api/add_product",
@@ -56,12 +54,11 @@ const newProduct = () => {
                     title: "Product add Successfully"
                 })
                 navigate("/")
-        }).catch(({response})=>{
-            console.log(response)
+        }).catch( function (error){
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: response,
+                text: error,
                 footer: 'Why do I have this error?'
             })
         })
