@@ -15,7 +15,7 @@ const index = () => {
   const getProducts = async()=>{
     await axios.get("/api/get_all_product")
       .then(({data})=>{
-        console.log('data',data)
+        console.log('data',data.products)
       })
   }
 

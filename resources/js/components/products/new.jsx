@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 const newProduct = () => {
 
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -43,22 +43,28 @@ const newProduct = () => {
         formData.append('quantity', quantity)
         formData.append('price', price)
 
-        await axios.post("/api/add_product/",formData)
-            .then(({data})=>{
-                toSafeInteger.fire({
+        await axios({
+            method:'post',
+            url: "/api/add_product",
+            headers:{
+                "Content-Type": "multipart/form-data"
+            },
+            data: formData
+        }).then(function(response){
+                toast.fire({
                     icon:"success",
                     title: "Product add Successfully"
                 })
-                Navigate("/")
+                navigate("/")
+        }).catch(({response})=>{
+            console.log(response)
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response,
+                footer: 'Why do I have this error?'
             })
-            .catch(({response})=>{
-                Swal.fire({
-                    type:'error',
-                    title: 'Oops...',
-                    text: response.message,
-                    footer: 'Why do I have this error?'
-                })
-            })
+        })
     }
 
   return (
